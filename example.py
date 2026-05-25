@@ -16,8 +16,8 @@ from TwitchChannelPointsMiner.classes.entities.Bet import Strategy, BetSettings,
 from TwitchChannelPointsMiner.classes.entities.Streamer import Streamer, StreamerSettings
 
 twitch_miner = TwitchChannelPointsMiner(
-    username="your-twitch-username",
-    password="write-your-secure-psw",           # If no password will be provided, the script will ask interactively
+    username="darkwatch7",
+    password="",           # If no password will be provided, the script will ask interactively
     claim_drops_startup=False,                  # If you want to auto claim all drops from Twitch inventory on the startup
     priority=[                                  # Custom priority in this case for example:
         Priority.STREAK,                        # - We want first of all to catch all watch streak from all streamers
@@ -42,45 +42,6 @@ twitch_miner = TwitchChannelPointsMiner(
             streamer_offline="red",             # Read more in README.md
             BET_wiN=Fore.MAGENTA                # Color allowed are: [BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET].
         ),
-        telegram=Telegram(                                                          # You can omit or set to None if you don't want to receive updates on Telegram
-            chat_id=123456789,                                                      # Chat ID to send messages @getmyid_bot
-            token="123456789:shfuihreuifheuifhiu34578347",                          # Telegram API token @BotFather
-            events=[Events.STREAMER_ONLINE, Events.STREAMER_OFFLINE,
-                    Events.BET_LOSE, Events.CHAT_MENTION],                          # Only these events will be sent to the chat
-            disable_notification=True,                                              # Revoke the notification (sound/vibration)
-        ),
-        discord=Discord(
-            webhook_api="https://discord.com/api/webhooks/0123456789/0a1B2c3D4e5F6g7H8i9J",  # Discord Webhook URL
-            events=[Events.STREAMER_ONLINE, Events.STREAMER_OFFLINE,
-                    Events.BET_LOSE, Events.CHAT_MENTION],                                  # Only these events will be sent to the chat
-        ),
-        webhook=Webhook(
-            endpoint="https://example.com/webhook",                                                                    # Webhook URL
-            method="GET",                                                                   # GET or POST
-            events=[Events.STREAMER_ONLINE, Events.STREAMER_OFFLINE,
-                    Events.BET_LOSE, Events.CHAT_MENTION],                                  # Only these events will be sent to the endpoint
-        ),
-        matrix=Matrix(
-            username="twitch_miner",                                                   # Matrix username (without homeserver)
-            password="...",                                                            # Matrix password
-            homeserver="matrix.org",                                                   # Matrix homeserver
-            room_id="...",                                                             # Room ID
-            events=[Events.STREAMER_ONLINE, Events.STREAMER_OFFLINE, Events.BET_LOSE], # Only these events will be sent
-        ),
-        pushover=Pushover(
-            userkey="YOUR-ACCOUNT-TOKEN",                                             # Login to https://pushover.net/, the user token is on the main page
-            token="YOUR-APPLICATION-TOKEN",                                           # Create a application on the website, and use the token shown in your application
-            priority=0,                                                               # Read more about priority here: https://pushover.net/api#priority
-            sound="pushover",                                                         # A list of sounds can be found here: https://pushover.net/api#sounds
-            events=[Events.CHAT_MENTION, Events.DROP_CLAIM],                          # Only these events will be sent
-        ),
-        gotify=Gotify(
-            endpoint="https://example.com/message?token=TOKEN",
-            priority=8,
-            events=[Events.STREAMER_ONLINE, Events.STREAMER_OFFLINE,
-                    Events.BET_LOSE, Events.CHAT_MENTION], 
-        )
-    ),
     streamer_settings=StreamerSettings(
         make_predictions=True,                  # If you want to Bet / Make prediction
         follow_raid=True,                       # Follow raid to obtain more points
@@ -119,17 +80,7 @@ twitch_miner = TwitchChannelPointsMiner(
 
 twitch_miner.mine(
     [
-        Streamer("streamer-username01", settings=StreamerSettings(make_predictions=True  , follow_raid=False , claim_drops=True  , watch_streak=True , community_goals=False , bet=BetSettings(strategy=Strategy.SMART      , percentage=5 , stealth_mode=True,  percentage_gap=20 , max_points=234   , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_USERS,      where=Condition.LTE, value=800 ) ) )),
-        Streamer("streamer-username02", settings=StreamerSettings(make_predictions=False , follow_raid=True  , claim_drops=False ,                                             bet=BetSettings(strategy=Strategy.PERCENTAGE , percentage=5 , stealth_mode=False, percentage_gap=20 , max_points=1234  , filter_condition=FilterCondition(by=OutcomeKeys.TOTAL_POINTS,     where=Condition.GTE, value=250 ) ) )),
-        Streamer("streamer-username03", settings=StreamerSettings(make_predictions=True  , follow_raid=False ,                     watch_streak=True , community_goals=True  , bet=BetSettings(strategy=Strategy.SMART      , percentage=5 , stealth_mode=False, percentage_gap=30 , max_points=50000 , filter_condition=FilterCondition(by=OutcomeKeys.ODDS,             where=Condition.LT,  value=300 ) ) )),
-        Streamer("streamer-username04", settings=StreamerSettings(make_predictions=False , follow_raid=True  ,                     watch_streak=True ,                                                                                                                                                                                                                                                       )),
-        Streamer("streamer-username05", settings=StreamerSettings(make_predictions=True  , follow_raid=True  , claim_drops=True ,  watch_streak=True , community_goals=True  , bet=BetSettings(strategy=Strategy.HIGH_ODDS  , percentage=7 , stealth_mode=True,  percentage_gap=20 , max_points=90    , filter_condition=FilterCondition(by=OutcomeKeys.PERCENTAGE_USERS, where=Condition.GTE, value=300 ) ) )),
-        Streamer("streamer-username06"),
-        Streamer("streamer-username07"),
-        Streamer("streamer-username08"),
-        "streamer-username09",
-        "streamer-username10",
-        "streamer-username11"
+        "mictia00"
     ],                                  # Array of streamers (order = priority)
     followers=False,                    # Automatic download the list of your followers
     followers_order=FollowersOrder.ASC  # Sort the followers list by follow date. ASC or DESC
